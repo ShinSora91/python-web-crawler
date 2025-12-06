@@ -9,3 +9,12 @@
     # INSERT 문 만들어주는 함수 호출 (a,b,c,d,e)
 
     ### 수집 후 INSERT 문 작성 insertQuery.txt 텍스트를 추가하는 방식으로 하면 되겠죠
+
+
+    상품정보 INSERT 문 순서
+    카테고리, 브랜드
+    product_detail_info
+    products
+    product_detail_images
+    product_main_images
+    product_options

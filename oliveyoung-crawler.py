@@ -33,6 +33,7 @@ try:
     print(f"원래 URL: {original_url}")
 
     try:
+        # 상품 상세 페이지 클릭
         element = driver.find_element(By.XPATH, "//*[@id='Contents']/ul[2]/li[3]")
         element.click()
         time.sleep(5)

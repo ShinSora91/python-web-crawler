@@ -1,0 +1,4 @@
+INSERT INTO brands (id, name, is_deleted, created_at, updated_at) VALUES
+(1, '라운드랩', FALSE, NOW(), NOW()),
+(2, '아누아', FALSE, NOW(), NOW()),
+(3, '토리든', FALSE, NOW(), NOW());
