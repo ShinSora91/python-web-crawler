@@ -45,7 +45,7 @@ try:
         print(f"상세 페이지 URL: {detail_url}")
 
         print("이미지 수집 함수 호출...")
-        image_urls = get_main_image_urls(driver, 3)  # 3개로 명시적 지정
+        main_image_urls = get_main_image_urls(driver, 3)  # 3개로 명시적 지정
 
         # 상품 기본 정보 수집
         print("\n상품 정보 수집 중...")
@@ -56,10 +56,10 @@ try:
 
         # 정보 저장
         save_product_info(category, brand, product_name, "product_info.txt")
-        save_urls_to_file(image_urls)
+        save_urls_to_file(main_image_urls)
 
         # 상품 상세 이미지 수집+저장
-        image_urls = get_detail_image_urls(driver, "detail_image_urls.txt")
+        detail_image_urls = get_detail_image_urls(driver, "detail_image_urls.txt")
 
         # 상품정보 제공 고시 수집+저장
         get_product_info_provided(driver, "product_info_provided.txt")
