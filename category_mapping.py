@@ -142,8 +142,8 @@ MAX_CATEGORY_ID = max(CATEGORY_ID_TO_NAME.keys())
 
 # 유틸리티 함수
 def get_category_id(category_name):
-    """카테고리 이름으로 ID 조회"""
-    return CATEGORY_NAME_TO_ID.get(category_name)
+    """카테고리 이름으로 ID 조회, 없을 경우 0 반환"""
+    return CATEGORY_NAME_TO_ID.get(category_name, 0)
 
 
 def get_category_name(category_id):
@@ -166,11 +166,21 @@ if __name__ == "__main__":
     print(f"총 카테고리 수: {get_total_category_count()}개")
     print(f"카테고리 ID 범위: {MIN_CATEGORY_ID} ~ {MAX_CATEGORY_ID}")
 
-    # 샘플 테스트
+    # 샘플 테스트 - 존재하는 카테고리
     test_categories = ['스킨/토너', '쿠션', '샴푸', '바디로션']
     for category in test_categories:
         category_id = get_category_id(category)
         if category_id:
             print(f"{category} -> ID: {category_id}")
         else:
-            print(f"{category} -> 카테고리를 찾을 수 없음")
+            print(f"{category} -> 카테고리를 찾을 수 없음 (ID: {category_id})")
+
+    # 존재하지 않는 카테고리 테스트
+    non_existing_categories = ['존재하지않는카테고리', '테스트', '없음']
+    for category in non_existing_categories:
+        category_id = get_category_id(category)
+        print(f"{category} -> ID: {category_id} (존재하지 않음, 0 반환)")
+
+    # 값이 None인 경우 테스트
+    print(f"None 입력 -> ID: {get_category_id(None)}")
+    print(f"빈 문자열 입력 -> ID: {get_category_id('')}")

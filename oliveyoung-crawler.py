@@ -3,9 +3,13 @@ from selenium.webdriver.common.by import By
 import time
 import traceback
 
+from brand_mapping import get_brand_id
+from category_mapping import get_category_id
 from mainImgCol import save_urls_to_file, get_main_image_urls
+from main_images_mapping import update_product_main_images_sql
 from productInfo import print_product_info, save_product_info, get_product_basic_info
 from detailImg import get_detail_image_urls
+from product_mapping import create_product_id, update_product_data_sql
 from productDetailInfoProvided import get_product_dtailinfo_provided, get_product_dtailinfo_provided, reset_product_detail_info_id
 
 # undetected-chromedriver 설정 (기존 설정 유지)
@@ -44,19 +48,41 @@ try:
         detail_url = driver.current_url
         print(f"상세 페이지 URL: {detail_url}")
 
+        # 상품 이미지 url 수집
         print("이미지 수집 함수 호출...")
         main_image_urls = get_main_image_urls(driver, 3)  # 3개로 명시적 지정
 
-        # 상품 기본 정보 수집
+        # 상품 기본 정보(카테고리, 브랜드, 상품이름) 수집
         print("\n상품 정보 수집 중...")
         category, brand, product_name = get_product_basic_info(driver)
 
         # 상품 정보 출력
         print_product_info(category, brand, product_name)
 
-        # 정보 저장
-        save_product_info(category, brand, product_name, "product_info.txt")
-        save_urls_to_file(main_image_urls)
+        # brand_id brand_id 찾음과 동시에 브랜드 SQL 파일 업데이트
+        brand_id = get_brand_id(brand)
+        # category_id > 0 인 경우에만 크롤링 지속하도록 하자
+        category_id = get_category_id(category)
+        # product_id
+        product_id = create_product_id(product_name)
+
+        # product_id > 0 경우 : 새로운 product_name 인 경우에만 클로링을 계속 이어나가도록 하자
+        if product_id > 0:
+            # 상품 SQL 파일 업데이트
+            sql_statement = update_product_data_sql(
+                product_id=product_id,
+                product_detail_info_id=product_id,  # 예시: product_id와 동일하게 설정
+                brand_id=brand_id,
+                category_id=category_id,
+                product_name=product_name
+            )
+            print(f"제품이 성공적으로 추가되었습니다. ID: {product_id}")
+        else:
+            print("이미 존재하는 제품명입니다.")
+
+        # 메인 이미지 SQL 파일 업데이트
+        update_product_main_images_sql(product_id, main_image_urls)
+        #####
 
 
         ### 소라 ###

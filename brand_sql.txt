@@ -1,4 +1,14 @@
 INSERT INTO brands (id, name, is_deleted, created_at, updated_at) VALUES
-(1, '라운드랩', FALSE, NOW(), NOW()),
-(2, '아누아', FALSE, NOW(), NOW()),
-(3, '토리든', FALSE, NOW(), NOW());
+(1, '바이오더마', FALSE, NOW(), NOW()),
+(2, '달바', FALSE, NOW(), NOW()),
+(3, '에스트라', FALSE, NOW(), NOW()),
+(4, '구달', FALSE, NOW(), NOW()),
+(5, '메디힐', FALSE, NOW(), NOW()),
+(6, '토리든', FALSE, NOW(), NOW()),
+(7, '이니스프리', FALSE, NOW(), NOW()),
+(8, '더페이스샵', FALSE, NOW(), NOW()),
+(9, '미샤', FALSE, NOW(), NOW()),
+(10, '스킨푸드', FALSE, NOW(), NOW()),
+(11, '토니모리', FALSE, NOW(), NOW()),
+(12, '클리오', FALSE, NOW(), NOW()),
+(13, '헤라', FALSE, NOW(), NOW());
