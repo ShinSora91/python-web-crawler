@@ -50,14 +50,15 @@ try:
         print(f"상세 페이지 URL: {detail_url}")
 
 
-        # 상품 데이터 수집 시작
-        # 상품 이미지 url 수집
-        print("이미지 수집 함수 호출...")
-        main_image_urls = get_main_image_urls(driver, 3)  # 3개로 명시적 지정
-
+        ################# 상품 데이터 수집 시작 ########################
+        ##### 병국 #####
         # 상품 기본 정보(카테고리, 브랜드, 상품이름) 수집
         print("\n상품 정보 수집 중...")
         category, brand, product_name = get_product_basic_info(driver)
+
+        # 상품 이미지 url 수집
+        print("이미지 수집 함수 호출...")
+        main_image_urls = get_main_image_urls(driver, 3)  # 3개로 명시적 지정
 
         # 상품 정보 출력
         print_product_info(category, brand, product_name)
@@ -85,7 +86,7 @@ try:
 
         # 메인 이미지 SQL 파일 업데이트
         update_product_main_images_sql(product_id, main_image_urls)
-        #####
+        #### 병국 ####
 
 
         ### 소라 ###
@@ -96,7 +97,6 @@ try:
         detail_image_urls = get_detail_image_urls(driver, "detail_image_urls.txt")
         # create_detail_image_sql(product_id, detail_image_urls, "detail_image_sql.txt");
 
-        # 상품 데이터 수집 끝
 
         ### 민석 ###
         # 상품 옵션 정보(옵션이미지, 옵션명, 옵션가격) 가져오는 함수 호출 - 민석
@@ -106,6 +106,8 @@ try:
 
         # 💡 옵션 정보 저장 함수 호출 (새로 추가)
         save_product_options(product_options, "product_options.txt")
+
+        #################### 상품 데이터 수집 끝 ######################
 
         print("\n뒤로가기 시도 중...")
 
