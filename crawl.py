@@ -162,6 +162,15 @@ def crawl_product_on_detail_page(driver, transaction, product_counter):
     if not product_options:
         raise ValueError(f"Error: 상품 {product_counter} - 상품 옵션 배열이 비어있습니다.")
 
+    # 옵션의 price 값 검사 -> 0 이라면 예외 발생
+    for idx, option in enumerate(product_options, start=1):
+        price = option.get("price")
+        if price == 0:
+            raise ValueError(
+                f"Error: 상품 {product_counter} - 옵션 {idx}의 price 값이 0입니다. 전체 옵션: {product_options}"
+            )
+
+
     print(f"  ✓ {len(product_options)}개의 옵션 수집 완료")
 
     # ============================================================
