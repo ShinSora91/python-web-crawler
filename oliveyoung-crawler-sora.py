@@ -94,7 +94,7 @@ try:
         product_info, product_detail_info_id = get_product_dtailinfo_provided(driver, filename="product_detailinfo_provided_sql.txt")
 
         # 상품 상세 이미지 수집+저장
-        detail_image_urls = get_detail_image_urls(driver, product_id, filename="detail_image_urls_sql.txt")
+        detail_image_urls = get_detail_image_urls(driver, product_id, filename="detail_image_urls_sql(2).txt")
 
 
         ### 민석 ###
